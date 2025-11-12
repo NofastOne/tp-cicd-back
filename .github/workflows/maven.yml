@@ -7,7 +7,7 @@
 # documentation.
 
 env:
-  imagename: ${{ vars.DOCKER_USERNAME }}/tpCICD:${{ github.ref_name }}
+  imagename: ${{ vars.DOCKER_USERNAME }}/tpcicd:${{ github.ref_name }}
 
 name: Java CI with Maven
 
@@ -42,4 +42,4 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Docker image
-      run: docker build -t tpCICD .
+      run: docker build -t tpcicd .

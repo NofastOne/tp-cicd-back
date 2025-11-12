@@ -6,6 +6,9 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
+env:
+  imagename: nofastone/tpCICD:${{ github.ref_name }}
+
 name: Java CI with Maven
 
 on:
@@ -29,3 +32,5 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: Docker image
+      run: docker build

@@ -42,6 +42,6 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Docker image
-      run: docker build -t tpcicd .
+      run: docker build -t nofastone/tpcicd .
     - name: Push docker image to docker hub
-      run: docker push tpcicd 
+      run: docker push nofastone/tpcicd 

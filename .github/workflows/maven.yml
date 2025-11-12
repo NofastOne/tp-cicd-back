@@ -39,6 +39,6 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Docker image
-      run: docker build -t tpcicd:latest .
+      run: docker build -t ${{env.imagename}} .
     - name: Push docker image to docker hub
-      run: docker push ${{ vars.DOCKER_USERNAME }}/tpcicd:latest
+      run: docker push ${{env.imagename}}

@@ -43,3 +43,5 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: Docker image
       run: docker build -t tpcicd .
+    - name: Push docker image to docker hub
+      run: docker push tpcicd 

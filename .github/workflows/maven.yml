@@ -39,6 +39,6 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Docker image
-      run: docker build -t nofastone/tp/tpcicd .
+      run: docker build -t tpcicd:latest .
     - name: Push docker image to docker hub
-      run: docker push nofastone/tp/tpcicd 
+      run: docker push ${{ vars.DOCKER_USERNAME }}/tpcicd:latest

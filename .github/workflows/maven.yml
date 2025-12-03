@@ -42,10 +42,9 @@ jobs:
       run: docker build -t ${{env.imagename}} .
     - name: Push docker image to docker hub
       run: docker push ${{env.imagename}}
-      
+
   deploy:
     if: ${{ github.ref_type == 'tag' }}
-    needs: publish
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to Render

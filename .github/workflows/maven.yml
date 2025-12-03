@@ -14,6 +14,7 @@ name: Java CI with Maven
 on:
   push:
     branches: [ "**" ]
+    tags: "**"
   pull_request:
     branches: [ "**" ]
 
@@ -42,9 +43,22 @@ jobs:
       run: docker build -t ${{env.imagename}} .
     - name: Push docker image to docker hub
       run: docker push ${{env.imagename}}
-
+  
   deploy:
     if: ${{ github.ref_type == 'tag' }}
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to render
+        uses: bankfliptech/deploy-to-render@v1
+        with:
+          serviceId: ${{ secrets.RENDER_SERVICE_ID }}
+          apiKey: ${{ secrets.RENDER_API_KEY }}
+          deployHookURL: ${{ secrets.DEPLOY_HOOK }}
+
+  publish:
+    if: ${{ github.ref_type == 'tag' }}
+    needs: deploy
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to Render
